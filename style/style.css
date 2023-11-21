@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap");
 * {
   font-family: "Montserrat";
-  /* margin: 0;
-  padding: 0; */
 }
 
 html,
@@ -52,10 +50,42 @@ section {
   align-items: center;
   justify-content: space-between;
   padding: 16px 128px;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 
 #header h1 {
   margin: 0;
+  /* animation: flash 1s infinite; */
+  animation: bounceIn 1s;
+}
+
+@keyframes bounceIn {
+  0% {
+    filter: opacity(0);
+    transform: translateY(-20px);
+  }
+  35% {
+    filter: opacity(0.25);
+    transform: translateY(0);
+  }
+  70% {
+    filter: opacity(0.5);
+    transform: translateY(-10px);
+  }
+  100% {
+    filter: opacity(1);
+    transform: translateY(0);
+  }
+}
+@keyframes flash {
+  from {
+    filter: opacity(0);
+  }
+  to {
+    filter: opacity(1);
+  }
 }
 
 #landing {
@@ -74,6 +104,10 @@ section {
 
 nav > a {
   margin-left: 12px;
+}
+
+nav > a:hover {
+  color: chartreuse;
 }
 
 #landing > div {
@@ -117,6 +151,21 @@ nav > a {
   justify-content: space-between;
 }
 
+.service-header h1 {
+  position: relative;
+}
+
+.service-header h1::before {
+  content: "";
+  width: 60px;
+  height: 60px;
+  background: url("/images/accent1.svg");
+  position: absolute;
+  left: -20px;
+  top: -10px;
+  z-index: -1;
+}
+
 .service-detail {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -126,6 +175,18 @@ nav > a {
 
 .service-detail-item {
   box-shadow: 4px 4px 4px #979797;
+}
+
+.service-detail-item:hover {
+  transform: scale(1.3);
+}
+
+.service-detail-item:hover img {
+  filter: blur(0);
+}
+.service-detail-item img {
+  width: 100%;
+  filter: blur(5px);
 }
 
 .service-detail-item {
@@ -145,6 +206,21 @@ nav > a {
   text-align: center;
 }
 
+#contact h1 {
+  position: relative;
+}
+
+#contact > h1::before {
+  content: "";
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  background: url("/images/accent2.svg");
+  left: -20px;
+  top: -10px;
+  z-index: -1;
+}
+
 .contact-detail {
   display: flex;
   justify-content: space-between;
@@ -157,6 +233,7 @@ form {
   flex-direction: column;
   border: 3px solid yellowgreen;
   padding: 64px 32px;
+  box-shadow: 1px 1px 1px black;
 }
 
 form h1 {
@@ -165,6 +242,11 @@ form h1 {
 }
 form button {
   border: none;
+}
+
+form button:hover {
+  cursor: pointer;
+  background-color: green;
 }
 .form-group {
   display: grid;
@@ -216,6 +298,10 @@ form button {
   font-size: 18px;
 }
 
+.input-group input:focus {
+  border-bottom: 2px solid goldenrod;
+}
+
 footer {
   padding: 16px 128px;
   background-color: yellowgreen;
@@ -234,4 +320,48 @@ footer p {
 .social-icon {
   display: flex;
   gap: 32px;
+}
+
+@media only screen and (max-width: 992px) {
+  #header,
+  #footer {
+    padding: 16px 32px;
+  }
+
+  section {
+    padding: 64px 32px;
+  }
+
+  #landing {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #landing > div {
+    width: 100%;
+  }
+
+  #about {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #about > div {
+    width: 100%;
+  }
+
+  .service-detail {
+    gap: 16px;
+  }
+
+  .contact-detail {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+  }
 }
